@@ -24,7 +24,7 @@ class Surveys extends CI_Controller
 	public function result()
 	{
 		$results = $this->session->all_userdata();
-		$this->load->view('results', $results);
+		
 
 		if($this->session->userdata('counter'))
 		{
