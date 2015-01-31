@@ -36,26 +36,19 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>Course 1</td>
-					<td>Description</td>
-					<td>5555</td>
-					<td><a href="/courses/destroy">Delete</a></td> <!--  need to redirect to id -->
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	<div>
-		<?php
-			echo "<tr>";
+<?php	
 			foreach($courses as $course)
 			{
+				echo "<tr>";
 				echo "<td> ". $course['name'] . " </td>" ;
 				echo "<td> ". $course['description'] . " </td>" ;
 				echo "<td> ". $course['created_at'] . " </td>" ;
+				echo "<td><a href='/courses/destroy/".$course['id']."'>Delete</a></td>";
+				echo "</tr>";
 			}
-			echo "</tr>";
-		?>
+?>
+			</tbody>
+		</table>
 	</div>
 </body>
 </html>	

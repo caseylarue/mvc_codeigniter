@@ -19,8 +19,13 @@ class Course extends CI_Model {
 
 	public function get_all_courses()
 	{
-		
-		return $this->db->query("SELECT * FROM courses")->result_array();
+
+		return $this->db->query("SELECT * FROM courses ORDER BY created_at DESC")->result_array();
+	}
+
+	public function delete_course($id)
+	{
+		return $this->db->query("DELETE FROM courses WHERE id=$id");
 	}
 
 
