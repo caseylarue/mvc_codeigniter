@@ -26,12 +26,6 @@
 	</div>
 	<div id='courses'>
 		<p>Courses</p>
-		<?php
-			if(isset($error))
-			{
-				echo $error;
-			}
-		?>
 		<table>
 			<thead>
 				<tr>
@@ -50,6 +44,18 @@
 				</tr>
 			</tbody>
 		</table>
+	</div>
+	<div>
+		<?php
+			echo "<tr>";
+			foreach($courses as $course)
+			{
+				echo "<td> ". $course['name'] . " </td>" ;
+				echo "<td> ". $course['description'] . " </td>" ;
+				echo "<td> ". $course['created_at'] . " </td>" ;
+			}
+			echo "</tr>";
+		?>
 	</div>
 </body>
 </html>	

@@ -8,13 +8,19 @@ class Course extends CI_Model {
 		$this->output->enable_profiler(TRUE);
 	}
 	
-	function add_course($course_details)
+	public function add_course($course_details)
 	{
 		$query = "INSERT INTO courses (name, description, created_at, active) VALUES (?,?,?,?)";
 		$values = array($course_details['name'], $course_details['description'], $course_details['created_at'], $course_details['active']);
 		return $this->db->query($query, $values);
-		echo "this is the model";
-		var_dump($query);
+		// echo "this is the model";
+		// var_dump($query);
+	}
+
+	public function get_all_courses()
+	{
+		
+		return $this->db->query("SELECT * FROM courses")->result_array();
 	}
 
 
