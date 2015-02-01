@@ -10,7 +10,6 @@ class Main extends CI_Controller {
 
 	public function index()
 	{
-
 		$this->load->view('index');
 	}
 
@@ -47,37 +46,49 @@ class Main extends CI_Controller {
 		}
 		else
 		{
-			redirect("/main/index");
+			echo "hello";
 		}
 	}
 
 	public function registration()
 	{
 		
-		// $this->load->library("form_validation");
-		// $this->form_validation->set_rules($first_name, )
+		$this->load->library("form_validation");
+		$this->form_validation->set_rules("first_name", "First Name", "required");
+		$this->form_validation->set_rules("last_name", "Last Name", "required");
+		$this->form_validation->set_rules("email", "Email", "required|valid_email|is_unique[users.email]");
+		$this->form_validation->set_rules("password", "Password", "min_length[8]");
+		$this->form_validation->set_rules("confirm_password", "Password Confirmation", "matches[confirm_password]");
+		if($this->form_validation->run() ===  FALSE)
+		{
+			// echo "this this is not correct";
+			$this->load->view('index');
+		}
+		else
+		{
+			// echo "this is correct";
+			$results = $this->input->post();
+			
+			$first_name = $results['first_name'];
+			$last_name = $results['last_name'];
+			$email = $results['email'];
+			$password = $results['password'];
+			$created_at = date('Y-m-d h:i:s');
 
-		$results = $this->input->post();
-		
-		$first_name = $results['first_name'];
-		$last_name = $results['last_name'];
-		$email = $results['email'];
-		$password = $results['password'];
-		$created_at = date('Y-m-d h:i:s');
+			$user = array(
+				"first_name" => $first_name,
+				"last_name" => $last_name,
+				"email" => $email,
+				"password" => $password,
+				"created_at" => $created_at,
+				'is_logged_in' => true
+			);
 
-		$user = array(
-			"first_name" => $first_name,
-			"last_name" => $last_name,
-			"email" => $email,
-			"password" => $password,
-			"created_at" => $created_at,
-			'is_logged_in' => true
-		);
-
-		$this->load->model("Login");
-		$this->Login->user_login($user);
-		$this->session->set_userdata($user);
-		redirect("/main/profile");
+			$this->load->model("Login");
+			$this->Login->user_login($user);
+			$this->session->set_userdata($user);
+			redirect("/main/profile");
+		}
 
 	}
 

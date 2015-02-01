@@ -40,6 +40,12 @@
 		echo $this->session->flashdata("login_error");
 	}
 ?>
+<?php
+	// if(isset($this->view_data['errors'] = validation_errors())
+	// {
+	echo $this->view_data['errors'] = validation_errors();
+	// }
+?>
 	<h1>Login:</h1>
 	<div id='login'>
 		<form action='/main/login' method='post'>
