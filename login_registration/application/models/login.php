@@ -9,4 +9,9 @@ class Login extends CI_Model {
 		return $this->db->query($query, $values);
 	}
 
+	function get_user($email)
+	{
+		return $this->db->query("SELECT * FROM users WHERE email = ?", array($email))->row_array();
+	}
+
 }

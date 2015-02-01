@@ -34,6 +34,12 @@
 	</style>
 </head>
 <body>
+<?php
+	if($this->session->flashdata("login_error"))
+	{
+		echo $this->session->flashdata("login_error");
+	}
+?>
 	<h1>Login:</h1>
 	<div id='login'>
 		<form action='/main/login' method='post'>

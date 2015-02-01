@@ -17,14 +17,46 @@ class Main extends CI_Controller {
 	public function login()
 	{
 		$email = $this->input->post('email');
-		$password = md5($this->input->post('password'));
+		// did not add md5 to password
+		$password = $this->input->post('password');
 		$this->load->model("Login");
-		
-		
+		$login = $this->Login->get_user($email);
+		if($login && $login['password'] == $password)
+		{
+			$user = array(
+				'first_name' => $login['first_name'],
+				'last_name' => $login['last_name'],
+				'email' => $login['email'],
+				'is_logged_in' => true
+			);
+			$this->session->set_userdata($user);
+			redirect("/main/profile");
+		}
+		else
+		 {
+           $this->session->set_flashdata("login_error", "Invaild email or password!");
+           redirect("/main/index");
+          } 
+	}
+
+	public function profile() 
+	{
+		if($this->session->userdata('is_logged_in') === TRUE)
+		{
+			$this->load->view('welcome');
+		}
+		else
+		{
+			redirect("/main/index");
+		}
 	}
 
 	public function registration()
 	{
+		
+		// $this->load->library("form_validation");
+		// $this->form_validation->set_rules($first_name, )
+
 		$results = $this->input->post();
 		
 		$first_name = $results['first_name'];
@@ -38,11 +70,21 @@ class Main extends CI_Controller {
 			"last_name" => $last_name,
 			"email" => $email,
 			"password" => $password,
-			"created_at" => $created_at
+			"created_at" => $created_at,
+			'is_logged_in' => true
 		);
 
 		$this->load->model("Login");
 		$this->Login->user_login($user);
+		$this->session->set_userdata($user);
+		redirect("/main/profile");
+
+	}
+
+	public function log_off()
+	{
+		$this->session->sess_destroy();
+		redirect("/main/index");
 	}
 }
 
