@@ -41,10 +41,12 @@
 	}
 ?>
 <?php
-	// if(isset($this->view_data['errors'] = validation_errors())
-	// {
-	echo $this->view_data['errors'] = validation_errors();
-	// }
+
+	if($this->session->flashdata("validation_error"))
+	{
+		echo $this->session->flashdata("validation_error");
+	}
+	
 ?>
 	<h1>Login:</h1>
 	<div id='login'>

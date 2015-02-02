@@ -61,12 +61,11 @@ class Main extends CI_Controller {
 		$this->form_validation->set_rules("confirm_password", "Password Confirmation", "matches[confirm_password]");
 		if($this->form_validation->run() ===  FALSE)
 		{
-			// echo "this this is not correct";
+			$this->session->set_flashdata('validation_error',validation_errors());	
 			$this->load->view('index');
 		}
 		else
 		{
-			// echo "this is correct";
 			$results = $this->input->post();
 			
 			$first_name = $results['first_name'];
