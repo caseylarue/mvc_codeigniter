@@ -24,12 +24,15 @@
 		     border: 0 none;
 		     outline: 0;
 		}
+		#heading {
+			margin-top: 110px;
+		}
 	</style>
 </head>
 <body>
-	<!-- header/ navigation -->
+	<?php $this->load->view('nav_before_login') ?>
 	<div class='container'>
-		<h2>Login</h2>
+		<h2 id="heading">Login</h2>
 		<form>
 		  <div class="form-group">
 		    <label for="exampleInputEmail1">Email address</label>

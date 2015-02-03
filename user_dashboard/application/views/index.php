@@ -24,9 +24,11 @@
 		     border: 0 none;
 		     outline: 0;
 		}
+
 		#heading {
 			background-color: #FAEBD7;
 			padding: 10px;
+			margin-top: 110px;
 		}
 		#footer {
 			width: 950px;
@@ -41,24 +43,26 @@
 	</style>
 </head>
 <body>
-	<!-- header/ navigation -->
+	<?php $this->load->view('nav_before_login') ?>
 	<div class='container'>
 		<div id="heading">
 			<h1>Welcome to the greatest website ever!</h1>
 			<h3>Well, maybe not the greatest but awesome practice!</h3>
-			<button type="submit" class="btn btn-default">Start</button>
+			<form action="/login" method="post">
+				<button type="submit" class="btn btn-default">Start</button>
+			</form>
 		</div>
 		<div id="footer" class="row">
 			<div class="site, col-md-4">
-				<h4><a href='#'>Manage Users</a></h4>
+				<h4><a href='/login'>Manage Users</a></h4>
 				<p>Using the application you can add, remove, and edit users to the application</p>
 			</div>
 			<div class="site, col-md-4">
-				<h4><a href='#'>Leave Messages</a></h4>
+				<h4><a href='/login'>Leave Messages</a></h4>
 				<p>Users can leave each other messages</p>
 			</div>
 			<div class="site, col-md-4">
-				<h4><a herf='#'>Edit User Info</a></h4>
+				<h4><a herf='/login'>Edit User Info</a></h4>
 				<p>Admins will be able to edit another users info</p>
 			</div>
 		</div>
