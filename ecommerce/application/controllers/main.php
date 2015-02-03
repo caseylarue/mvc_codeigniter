@@ -41,8 +41,13 @@ class Main extends CI_Controller {
 	{
 		$this->load->model('Purchase');
 		$result = $this->Purchase->retrieve_cart();
-		$cart = $result[0];
-		var_dump($cart);
+		$cart['items'] = $result;
+		$this->load->view('checkout', $cart);
+	}
+
+	public function delete_item($id)
+	{
+		
 	}
 }
 

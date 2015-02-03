@@ -24,6 +24,18 @@
 	</style>
 </head>
 <body>
+	<?php
+		foreach($items as $item)
+		{
+			echo "<tr>";
+			echo "<td> ". $item['total_qty'] ." </td>";
+			echo "<td> ". $item['description'] ." </td>";
+			echo "<td> ". $item['total_amt'] ." </td>";
+			echo "<td><a href='/main/delete_item/".$item['id']."'>Delete</a></td>";
+			// echo "<td><a href=''><</td>";
+			echo "</tr>";
+		}
+	 ?>
 	<h1>Check Out</h1>
 	<table>
 		<thead>

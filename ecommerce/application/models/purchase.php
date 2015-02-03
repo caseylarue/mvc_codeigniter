@@ -11,6 +11,11 @@ class Purchase extends CI_Model {
 
 	public function get_cart_qty()
 	{
-		return $this->db->query ("SELECT sum(qty) FROM cart")->result_array();
+		return $this->db->query("SELECT sum(qty) FROM cart")->result_array();
+	}
+
+	public function retrieve_cart()
+	{
+		return $this->db->query("SELECT products.id, products.description, SUM(cart.qty) as total_qty,  products.price * SUM(cart.qty) as total_amt FROM cart JOIN products ON products.id = cart.product_id GROUP BY products.description")->result_array();
 	}
 }

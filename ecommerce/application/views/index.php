@@ -66,23 +66,24 @@
 						</form>
 					</td>
 				</tr>
-	<!-- 			<tr> 
+				<tr> <!-- new item -->
 					<td>Dojo Cup</td>
 					<td>$29.00</td>
+						<form action='/main/cart' method='post'>
+							<input type='hidden' name='product_id' value='2'>
 					<td>
-						<select name='2' form='cart'>Qty
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-						</select>
+							<select name='qty'>Qty
+								<option value='1'>1</option>
+								<option value='2'>2</option>
+								<option value='3'>3</option>
+							</select>
 					</td>
 					<td>
-						<form form='cart' action='/main/purchase' method='post'>
-							<input type='hidden' name='2'>
-							<button type='submit' value='buy'>Buy</button>
+							<input type='submit' name='submit' value='Buy'>
+					</td>
 						</form>
 					</td>
-				</tr> -->
+				</tr>
 			</tbody>
 		</table>
 	</div>
