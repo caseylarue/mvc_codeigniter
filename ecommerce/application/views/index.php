@@ -39,7 +39,7 @@
 	<div id='container'>
 		<div id='nav'>
 			<h1>Products</h1>
-			<h2>Your Cart <a href="#">#</a></h2>
+			<h2>Your Cart <a href='/main/checkout'><?= $this->session->userdata('cart'); ?></a></h2>
 		</div>
 		<table>
 			<thead>
