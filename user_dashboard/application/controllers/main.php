@@ -21,7 +21,10 @@ class Main extends CI_Controller {
 
 	public function dashboard()
 	{
-		echo "dashboard";
+		$this->load->model('Login');
+		$result = $this->Login->get_all_users();
+		$data['users'] = $result;
+		$this->load->view('dashboard', $data);
 	}
 
 	public function profile()
@@ -69,7 +72,7 @@ class Main extends CI_Controller {
 
 			$this->load->model("Login");
 			$this->Login->add_blog($user);
-			$this->session->set_userdata($user);
+			// $this->session->set_userdata($user);  // commented this out, may not work
 			$this->add_user($user);
 		}
 	}
@@ -80,8 +83,14 @@ class Main extends CI_Controller {
 		$user['access'] = 'admin';
 		$this->load->model("Login");
 		$this->Login->add_user($user);
+		$this->session->set_userdata($user);
+		redirect('/main/dashboard');
 	}
 
+	public function wall($id)
+	{
+		
+	}
 
 }
 

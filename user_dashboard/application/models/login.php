@@ -16,9 +16,9 @@ class Login extends CI_Model {
 		return $this->db->query($query, $values);
 	}
 
-	function get_user($email)
+	function get_all_users()
 	{
-		return $this->db->query("SELECT * FROM users WHERE email = ?", array($email))->row_array();
+		return $this->db->query("SELECT * FROM users ORDER BY last_name DESC")->result_array();
 	}
 
 }
