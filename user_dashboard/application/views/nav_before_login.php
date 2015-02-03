@@ -43,10 +43,11 @@
 	<!-- header/ navigation -->
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class='container'>
-			<h1><a href="/index">The Wall</a></h1>
-			<h4><a href="/index">Home</a></h4>
-			<h4><a href="/login">Sign In<a></h4>
+			<h1><a href="/main/index">The Wall</a></h1>
+			<h4><a href="/main/index">Home</a></h4>
+			<h4><a href="/main/login">Sign In<a></h4>
 		</div> <!-- container -->
 	</nav>	
+	<!-- header/ navigation -->
 </body>
 </html>

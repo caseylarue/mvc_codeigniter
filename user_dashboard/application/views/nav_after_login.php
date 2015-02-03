@@ -44,9 +44,9 @@
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class='container'>
 			<h1>The Wall</h1>
-			<h4><a href="/dashbord">Dashboard</a></h4>
-			<h4><a href="#">Profile<a></h4>
-			<h4><a href="#">Log Off<a></h4>
+			<h4><a href="/main/dashboard">Dashboard</a></h4>
+			<h4><a href="/main/profile">Profile<a></h4>
+			<h4><a href="/main/index">Log Off<a></h4>
 		</div> <!-- container -->
 	</nav>	
 </body>

@@ -48,21 +48,21 @@
 		<div id="heading">
 			<h1>Welcome to the greatest website ever!</h1>
 			<h3>Well, maybe not the greatest but awesome practice!</h3>
-			<form action="/login" method="post">
+			<form action="/main/login" method="post">
 				<button type="submit" class="btn btn-default">Start</button>
 			</form>
 		</div>
 		<div id="footer" class="row">
 			<div class="site, col-md-4">
-				<h4><a href='/login'>Manage Users</a></h4>
+				<h4><a href='/main/login'>Manage Users</a></h4>
 				<p>Using the application you can add, remove, and edit users to the application</p>
 			</div>
 			<div class="site, col-md-4">
-				<h4><a href='/login'>Leave Messages</a></h4>
+				<h4><a href='/main/login'>Leave Messages</a></h4>
 				<p>Users can leave each other messages</p>
 			</div>
 			<div class="site, col-md-4">
-				<h4><a herf='/login'>Edit User Info</a></h4>
+				<h4><a herf='/main/login'>Edit User Info</a></h4>
 				<p>Admins will be able to edit another users info</p>
 			</div>
 		</div>

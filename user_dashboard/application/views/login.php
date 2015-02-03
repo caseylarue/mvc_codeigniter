@@ -43,30 +43,38 @@
 	</style>
 </head>
 <body>
-	<?php $this->load->view('nav_before_login') ?>
+	<?php $this->load->view('nav_after_login') ?>
 	<div class='container'>
-		<div id="heading">
+	<div id="heading">
+<?php
+	if($this->session->flashdata("validation_error"))
+	{
+		echo  $this->session->flashdata("validation_error");
+	}
+?>	
 		<h2>Login</h2>
-        <form class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-            <button type="submit" class="btn btn-default">Login</button>
+        <form class='form-group' action='/main/login_verify' method='post'>
+        	<input type='hidden' name='login_verify'>
+            <label for='email'>Email address</label>
+            <input type='email' name='email' class='form-control' id='email' placeholder="Enter email">
+            <label for="password">Password</label>
+            <input type='password' class='form-control' id='password' placeholder='Password'>
+            <button type='submit' class='btn btn-default'>Login</button>
          </form>
          <h2>Registration</h2>
-	  	<form class="form-group">
-		    <label for="exampleInputName2">First Name</label>
-		    <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
-		    <label for="exampleInputName2">Last Name</label>
-		    <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
-		    <label for="exampleInputEmail1">Email address</label>
-		    <input type="email" class="form-control" id="exampleInputEmail1" plsaceholder="Enter email">
-		    <label for="exampleInputPassword1">Password</label>
-		    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-		    <label for="exampleInputPassword1">Password Confirm</label>
-		    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-		    <button type="submit" class="btn btn-default">Register</button>
+	  	<form class='form-group' action='/main/register' method='post'>
+	  		<input type='hidden' name='register'>
+		    <label for='first_name'>First Name</label>
+		    <input type='text' name='first_name' class='form-control' placeholder='Jane'>
+		    <label for='last_name'>Last Name</label>
+		    <input type='text' name='last_name' class='form-control' placeholder='Doe'>
+		    <label for='email'>Email address</label>
+		    <input type='email' name='email' class='form-control' placeholder='Enter email'>
+		    <label for='password'>Password</label>
+		    <input type='password' class='form-control' name='password' placeholder='Password'>
+		    <label for='password_confirm'>Password Confirm</label>
+		    <input type='password' class='form-control' name='password_confirm' placeholder='Password Confirmation'>
+		    <button type='submit' class='btn btn-default'>Register</button>
 	  	</form>
 		</div>
 		<div id="footer" class="row">
