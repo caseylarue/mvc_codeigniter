@@ -18,4 +18,9 @@ class Purchase extends CI_Model {
 	{
 		return $this->db->query("SELECT products.id, products.description, SUM(cart.qty) as total_qty,  products.price * SUM(cart.qty) as total_amt FROM cart JOIN products ON products.id = cart.product_id GROUP BY products.description")->result_array();
 	}
+
+	public function delete_item($id)
+	{
+		return $this->db->query("DELETE FROM cart WHERE product_id=$id");
+	}
 }

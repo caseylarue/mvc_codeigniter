@@ -47,7 +47,9 @@ class Main extends CI_Controller {
 
 	public function delete_item($id)
 	{
-		
+		$this->load->model('Purchase');
+		$this->Purchase->delete_item($id);
+		$this->checkout();
 	}
 }
 
