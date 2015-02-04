@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Login</title>
+	<title>The Wall</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Bootstrap">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
@@ -46,36 +46,34 @@
 	<?php $this->load->view('nav_after_login') ?>
 	<div class='container'>
 	<div id="heading">
-		<h1>Dashboard</h1>
-		<table class="table table-striped table-hover">
-			<thead>
-				<tr>
-					<th>id</th>
-					<th>name</th>
-					<th>email</th>
-					<th>created_at</th>
-					<th>user_level</th>
-				</tr>
-			</thead>
-			<tbody>
-			<?php
-				foreach ($users as $user)
-				{	
-					echo '<tr>';
-					echo '<td>'.$user['id'].'</td>';
-					echo '<td><a href="/messages/wall/'.$user['id'].'">'.$user['first_name'].' '.$user['last_name'].'</a></td>';
-					// echo '<td>'.$user['first_name'].' '.$user['last_name'].'</td>';
-					echo '<td>'.$user['email'].'</td>';
-					echo '<td>'.$user['created_at'].'</td>';
-					echo '<td>'.$user['user_access'].'</td>';
-					echo '</tr>';
-				}
-			?>
-			</tbody>
-		</table>
-		<div id="footer" class="row">
-			<div class="site, col-md-12"></div>	
-		</div>
+<?php
+	foreach($profile as $about)
+	{
+		echo "<h2>".$about['first_name'].' '.$about['last_name']."</h2>";
+		echo "<h4> Joined The Wall: ".$about['created_at']."</h4>";
+		echo "<h4> User Id: ".$about['id']."</h4>";
+		echo "<h4> Email ".$about['email']."</h4>";
+		echo "<h4> Description ".$about['description']."</h4>";
+
+	}
+?>
+		
+		
+		<h5>Leave a Message for <?= $about['first_name']; ?></h5>
+		<form class="form-group" action="/messages/post_msg" method="post">
+			<input type='hidden' name='created_by_user_id' value='<?= $this->session->userdata('id'); ?>'>
+			<input type='hidden' name='message_to_user_id' value='<?php echo $about['id']; ?>'>
+			<textarea class="form-control" rows="3" name='message'></textarea>
+			<button type="submit" class="btn btn-default" >Submit</button>
+		</form>
+		<form>
+			<div class="form-group">
+				<textarea class="form-control" rows="3">this is a message</textarea>
+				<textarea class="form-control" rows="3">this is a comment</textarea>
+				<textarea class="form-control" rows="3">leave a comment</textarea>
+				<button type="submit" class="btn btn-default" >Submit</button>
+			</div>
+		</form>
 	</div> <!-- container -->
 </body>
 </html>

@@ -83,14 +83,15 @@ class Main extends CI_Controller {
 		$user['access'] = 'admin';
 		$this->load->model("Login");
 		$this->Login->add_user($user);
+		$user['id'] = $this->db->insert_id();
 		$this->session->set_userdata($user);
 		redirect('/main/dashboard');
 	}
 
-	public function wall($id)
-	{
-		
-	}
+	// public function wall($id)
+	// {
+	// 	$this->load->view('wall');
+	// }
 
 }
 
