@@ -69,6 +69,46 @@
 		</form>
 		<div>
 <?php
+				
+				$profile[] = '';
+				// echo "<pre>";	
+				// var_dump($profile);
+				// echo "</pre>";
+				for($i=0; $i<count($profile); $i++)
+				{
+					echo "message id:". $profile[$i]['message_id'];
+					echo "<br>";
+					echo "i=".$i;
+					echo "<br>";
+	    			for($j = $i; $j<count($profile); $j++)
+					{
+						echo "j=".$j;
+						echo "<br>";
+
+						if( !empty($profile[$j+1]['message_id']) &&  $profile[$j]['message_id']==$profile[$j+1]['message_id'])
+						{
+							echo "there is a comment here";
+							echo "<br>";					
+						}  
+						else 
+						{
+							if( !empty($profile[$j+1]['message_id']) && $profile[$j]['message_id']==$profile[$j-1]['message_id'])
+							{
+								echo "display an additional comment?";
+							}
+						}
+
+					}	
+						echo "<br>";
+						echo "i = ".$i;
+						echo "<br>";
+						echo "j = ".$j;
+						echo "<br>";
+						echo "i+j, i=". $i = $i+$j;	
+						echo "<br>";
+				}
+
+
 				for($i=0; $i<count($profile); $i++)
 				{
 ?>
@@ -81,7 +121,10 @@
 					<!-- 	display comments if not empty -->
 						<p>Message ID: <?= $profile[$i]['message_id'] ?></p>
 						<?php
-							//if comment meessage id is not blank then display and iterate through using a for loop
+							if($profile[$i]['comment_message_id'] == $profile[$i+1]['comment_message_id'])
+							{
+								echo "there are multiple comments";
+							}
 						?>
 						<p>Comment: <?= $profile[$i]['comment'] ?></p>
 					</div>
@@ -94,10 +137,6 @@
 <?php				
 				}
 ?>
-		<!-- 	<textarea class="form-control" rows="3">this is a message</textarea>
-			<textarea class="form-control" rows="3">this is a comment</textarea>
-			<textarea class="form-control" rows="3">leave a comment</textarea>
-			<button type="submit" class="btn btn-default" >Submit</button> -->
 		</div>
 	</div> <!-- container -->
 </body>
