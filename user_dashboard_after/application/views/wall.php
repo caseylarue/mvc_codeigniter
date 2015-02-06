@@ -77,10 +77,15 @@
 						<p>Posted by: <?= $profile[$i]['message_from_first_name'] ?> <?= $profile[$i]['message_from_last_name'] ?>
 						<p>Date Posted: <?= $profile[$i]['created_at'] ?>
 					</div>
-					<form class='form-control' action='/messages/comments' method='post'>
+					<div>
+						<p>Message ID: <?= $profile[$i]['message_id'] ?></p>
+						<p>Comment: <?= $profile[$i]['comment'] ?></p>
+					</div>
+					<form  action='/messages/comments/<?=$profile[0]['profile_id']?>' method='post'>
 						<input type='hidden' name='msg_id' value='<?= $profile[$i]['message_id']?>'>
-						<textarea class='form-control' rows='3'>this is a message</textarea>
-						
+						<input type='hidden' name='comment_user_id' value='<?= $this->session->userdata('id') ?>'>
+						<textarea rows='3' name='comment' placeholder='comment on this post'></textarea>
+						<input type='submit' value='comment!'>
 					</form>
 <?php				
 				}

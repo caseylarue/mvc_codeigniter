@@ -19,4 +19,11 @@ class Message extends CI_Model {
 	{
 		return $this->db-query("SELECT * FROM messages WHERE user_id_profile = ?", array($id))->row_array();
 	}
+
+	public function insert_comment($data)
+	{
+		$query = "INSERT INTO comments (message_id, comment_user_id, comment, created_at) VALUES (?,?,?,?)";
+		$values = array($data['msg_id'], $data['comment_user_id'], $data['comment'], $data['created_at']);
+		return $this->db->query($query, $values);
+	}
 }
