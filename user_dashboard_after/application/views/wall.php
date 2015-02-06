@@ -80,6 +80,7 @@
 					echo "<br>";
 					echo "i=".$i;
 					echo "<br>";
+					$k = $i;
 	    			for($j = $i; $j<count($profile); $j++)
 					{
 						echo "j=".$j;
@@ -100,11 +101,8 @@
 
 					}	
 						echo "<br>";
+						$i = $k + 1;
 						echo "i = ".$i;
-						echo "<br>";
-						echo "j = ".$j;
-						echo "<br>";
-						echo "i+j, i=". $i = $i+$j;	
 						echo "<br>";
 				}
 
