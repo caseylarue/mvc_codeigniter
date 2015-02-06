@@ -40,6 +40,10 @@
 			vertical-align: top;
 			border: 1px solid silver;
 		}
+		.message {
+			border: 1px solid silver;
+			padding: 10px;
+		}
 	</style>
 </head>
 <body>
@@ -47,33 +51,45 @@
 	<div class='container'>
 	<div id="heading">
 <?php
-	foreach($profile as $about)
-	{
-		echo "<h2>".$about['first_name'].' '.$about['last_name']."</h2>";
-		echo "<h4> Joined The Wall: ".$about['created_at']."</h4>";
-		echo "<h4> User Id: ".$about['id']."</h4>";
-		echo "<h4> Email ".$about['email']."</h4>";
-		echo "<h4> Description ".$about['description']."</h4>";
-
-	}
+	echo $profile[0]['first_name'];
+	echo "<h2>".$profile[0]['first_name'].' '.$profile[0]['last_name']."</h2>";
+	echo "<h4> Joined The Wall: ".$profile[0]['created_at']."</h4>";
+	echo "<h4> User Id: ".$profile[0]['profile_id']."</h4>";
+	echo "<h4> Email ".$profile[0]['email']."</h4>";
+	echo "<h4> Description ".$profile[0]['description']."</h4>";
 ?>
 		
 		
-		<h5>Leave a Message for <?= $about['first_name']; ?></h5>
+		<h5>Leave a Message for <?= $profile[0]['first_name']; ?></h5>
 		<form class="form-group" action="/messages/post_msg" method="post">
-			<input type='hidden' name='created_by_user_id' value='<?= $this->session->userdata('id'); ?>'>
-			<input type='hidden' name='message_to_user_id' value='<?php echo $about['id']; ?>'>
+			<input type='hidden' name='message_from_id' value='<?= $this->session->userdata('id'); ?>'>
+			<input type='hidden' name='user_id_profile' value='<?php echo $profile[0]['profile_id']; ?>'>
 			<textarea class="form-control" rows="3" name='message'></textarea>
 			<button type="submit" class="btn btn-default" >Submit</button>
 		</form>
-		<form>
-			<div class="form-group">
-				<textarea class="form-control" rows="3">this is a message</textarea>
-				<textarea class="form-control" rows="3">this is a comment</textarea>
-				<textarea class="form-control" rows="3">leave a comment</textarea>
-				<button type="submit" class="btn btn-default" >Submit</button>
-			</div>
-		</form>
+		<div>
+<?php
+				for($i=0; $i<count($profile); $i++)
+				{
+?>
+					<div class='message'>
+						<p>Message: <?= $profile[$i]['message'] ?></p>
+						<p>Posted by: <?= $profile[$i]['message_from_first_name'] ?> <?= $profile[$i]['message_from_last_name'] ?>
+						<p>Date Posted: <?= $profile[$i]['created_at'] ?>
+					</div>
+					<form class='form-control' action='/messages/comments' method='post'>
+						<input type='hidden' name='msg_id' value='<?= $profile[$i]['message_id']?>'>
+						<textarea class='form-control' rows='3'>this is a message</textarea>
+						
+					</form>
+<?php				
+				}
+?>
+		<!-- 	<textarea class="form-control" rows="3">this is a message</textarea>
+			<textarea class="form-control" rows="3">this is a comment</textarea>
+			<textarea class="form-control" rows="3">leave a comment</textarea>
+			<button type="submit" class="btn btn-default" >Submit</button> -->
+		</div>
 	</div> <!-- container -->
 </body>
 </html>

@@ -10,14 +10,11 @@ class Messages extends CI_Controller {
 
 	public function wall($id)
 	{
+		// do one query  to get the user info and messages
 		$this->load->model('Message');
 		$results = $this->Message->get_user_info($id);
 		$info['profile'] = $results;
 		$this->load->view('wall', $info); 
-
-		// query to get user info(top header) and messages on load, make this a seprate function?
-		// $this->load->model('Message');
-		// $this->Message->get_messages($id);
 	}
 
 	public function post_msg()
@@ -26,6 +23,9 @@ class Messages extends CI_Controller {
 		$data['created_at'] = date('Y-m-d h:i:s');
 		$this->load->model('Message');
 		$this->Message->post_message($data);
+		// echo $data['user_id_profile'];
+		//////// #1  need to pass the profile id in the URL below
+		redirect('/messages/wall/'.$data['user_id_profile']);
 	}
 
 }
