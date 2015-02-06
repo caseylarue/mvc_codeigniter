@@ -78,7 +78,11 @@
 						<p>Date Posted: <?= $profile[$i]['created_at'] ?>
 					</div>
 					<div>
+					<!-- 	display comments if not empty -->
 						<p>Message ID: <?= $profile[$i]['message_id'] ?></p>
+						<?php
+							//if comment meessage id is not blank then display and iterate through using a for loop
+						?>
 						<p>Comment: <?= $profile[$i]['comment'] ?></p>
 					</div>
 					<form  action='/messages/comments/<?=$profile[0]['profile_id']?>' method='post'>
