@@ -44,6 +44,10 @@
 			border: 1px solid silver;
 			padding: 10px;
 		}
+		.comment {
+			border: 1px solid silver;
+			margin-left: 10px;
+		}
 	</style>
 </head>
 <body>
@@ -51,38 +55,52 @@
 	<div class='container'>
 	<div id="heading">
 <?php
-	echo $profile[0]['first_name'];
-	echo "<h2>".$profile[0]['first_name'].' '.$profile[0]['last_name']."</h2>";
-	echo "<h4> Joined The Wall: ".$profile[0]['created_at']."</h4>";
-	echo "<h4> User Id: ".$profile[0]['profile_id']."</h4>";
-	echo "<h4> Email ".$profile[0]['email']."</h4>";
-	echo "<h4> Description ".$profile[0]['description']."</h4>";
+	echo "<h2>".$messages[0]['first_name'].' '.$messages[0]['last_name']."</h2>";
+	echo "<h4> User Id: ".$messages[0]['profile_id']."</h4>";
+	echo "<h4> Email ".$messages[0]['email']."</h4>";
+	echo "<h4> Description ".$messages[0]['description']."</h4>";
 ?>
-		
-		
-		<h5>Leave a Message for <?= $profile[0]['first_name']; ?></h5>
+			
+	<h5>Leave a Message for <?= $messages[0]['first_name']; ?></h5>
 		<form class="form-group" action="/messages/post_msg" method="post">
 			<input type='hidden' name='message_from_id' value='<?= $this->session->userdata('id'); ?>'>
-			<input type='hidden' name='user_id_profile' value='<?php echo $profile[0]['profile_id']; ?>'>
+			<input type='hidden' name='user_id_profile' value='<?= $messages[0]['profile_id']; ?>'>
 			<textarea class="form-control" rows="3" name='message'></textarea>
 			<button type="submit" class="btn btn-default" >Submit</button>
 		</form>
-		<div>
+
 <?php
-			foreach ($profile as $message)
+			foreach ($messages as $message)
 			{
 ?>
+				<div>
 				<p>Message: <?= $message['message'] ?></p>
+				<p>From: <?= $message['message_from_first_name']." ".$message['message_from_last_name']." ".$message['created_at']  ?></p>
 <?php
-				$comment = explode(",", $message['comments']);
-				foreach($comment as $value)
+				foreach($comments as $comment)
 				{
-					echo $value;
-					echo "<br>";
+					if($comment['comment_message_id']== $message['message_id'])
+					{
+?>	
+						<div class='comment'>	
+						<p><?= $comment['comments']?></p>
+						<p><?= $comment['comment_first_name']." ".$comment['comment_last_name']." ".$comment['comment_created_at'] ?></p>
+						</div>
+<?php
+					}
 				}
-			}	
 ?>
-		</div>
+				<form class="form-group" action="/messages/comments/<?= $message['profile_id'] ?>" method="post">
+					<input type='hidden' name='comment_user_id' value='<?= $this->session->userdata('id'); ?>'>
+					<input type='hidden' name='msg_id' value='<?= $message['message_id']; ?>'>
+					<textarea class="form-control" rows="3" name='comment'></textarea>
+					<button type="submit" class="btn btn-default" >Comment on this post!</button>
+				</form>
+				</div>
+<?php
+			}
+?>
+
 	</div> <!-- container -->
 </body>
 </html>

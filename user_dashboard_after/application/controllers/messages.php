@@ -12,9 +12,11 @@ class Messages extends CI_Controller {
 	{
 		// do one query  to get the user info and messages
 		$this->load->model('Message');
-		$results = $this->Message->get_user_info($id);
-		$info['profile'] = $results;
-		$this->load->view('wall', $info); 
+		$messages = $this->Message->get_messages($id);
+		$comments = $this->Message->get_comments($id);
+
+		$this->load->view('wall', array('messages' => $messages, 
+										  'comments' => $comments)); 
 	}
 
 	public function post_msg()
@@ -33,7 +35,7 @@ class Messages extends CI_Controller {
 		$data['created_at'] = date('Y-m-d h:i:s');
 		$this->load->model('Message');
 		$this->Message->insert_comment($data);
-		redirect('/messages/wall/$id');
+		redirect("/messages/wall/".$id);
 	}
 
 }
