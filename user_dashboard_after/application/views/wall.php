@@ -69,71 +69,18 @@
 		</form>
 		<div>
 <?php
-				
-				$profile[] = '';
-				// echo "<pre>";	
-				// var_dump($profile);
-				// echo "</pre>";
-				for($i=0; $i<count($profile); $i++)
-				{
-					echo "message id:". $profile[$i]['message_id'];
-					echo "<br>";
-					echo "i=".$i;
-					echo "<br>";
-					$k = $i;
-	    			for($j = $i; $j<count($profile); $j++)
-					{
-						echo "j=".$j;
-						echo "<br>";
-
-						if( !empty($profile[$j+1]['message_id']) &&  $profile[$j]['message_id']==$profile[$j+1]['message_id'])
-						{
-							echo "there is a comment here";
-							echo "<br>";					
-						}  
-						else 
-						{
-							if( !empty($profile[$j+1]['message_id']) && $profile[$j]['message_id']==$profile[$j-1]['message_id'])
-							{
-								echo "display an additional comment?";
-							}
-						}
-
-					}	
-						echo "<br>";
-						$i = $k + 1;
-						echo "i = ".$i;
-						echo "<br>";
-				}
-
-
-				for($i=0; $i<count($profile); $i++)
-				{
+			foreach ($profile as $message)
+			{
 ?>
-					<div class='message'>
-						<p>Message: <?= $profile[$i]['message'] ?></p>
-						<p>Posted by: <?= $profile[$i]['message_from_first_name'] ?> <?= $profile[$i]['message_from_last_name'] ?>
-						<p>Date Posted: <?= $profile[$i]['created_at'] ?>
-					</div>
-					<div>
-					<!-- 	display comments if not empty -->
-						<p>Message ID: <?= $profile[$i]['message_id'] ?></p>
-						<?php
-							if($profile[$i]['comment_message_id'] == $profile[$i+1]['comment_message_id'])
-							{
-								echo "there are multiple comments";
-							}
-						?>
-						<p>Comment: <?= $profile[$i]['comment'] ?></p>
-					</div>
-					<form  action='/messages/comments/<?=$profile[0]['profile_id']?>' method='post'>
-						<input type='hidden' name='msg_id' value='<?= $profile[$i]['message_id']?>'>
-						<input type='hidden' name='comment_user_id' value='<?= $this->session->userdata('id') ?>'>
-						<textarea rows='3' name='comment' placeholder='comment on this post'></textarea>
-						<input type='submit' value='comment!'>
-					</form>
-<?php				
+				<p>Message: <?= $message['message'] ?></p>
+<?php
+				$comment = explode(",", $message['comments']);
+				foreach($comment as $value)
+				{
+					echo $value;
+					echo "<br>";
 				}
+			}	
 ?>
 		</div>
 	</div> <!-- container -->

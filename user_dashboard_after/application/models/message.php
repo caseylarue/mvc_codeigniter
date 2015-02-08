@@ -20,7 +20,7 @@ class Message extends CI_Model {
 		users2.first_name as message_from_first_name, 
 		users2.last_name as message_from_last_name,
 		comments.message_id as comment_message_id,
-		comments.comment as comment,
+		GROUP_CONCAT(comments.comment) as comments,
 		comments.created_at as comment_created_at,
 		comments.comment_user_id as comment_user_id,
 		users3.first_name as comment_first_name,
@@ -31,6 +31,7 @@ class Message extends CI_Model {
 		LEFT JOIN comments ON messages.id = comments.message_id
 		LEFT JOIN users AS users3 on users3.id = comments.comment_user_id
 		WHERE messages.user_id_profile = 1
+		GROUP BY messages.id
 		ORDER BY messages.created_at DESC")->result_array();
 	}
 
