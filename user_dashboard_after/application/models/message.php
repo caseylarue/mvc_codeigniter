@@ -2,6 +2,11 @@
 
 class Message extends CI_Model {
 
+	public function user_info($id)
+	{
+		return $this->db->query("SELECT * FROM users WHERE id=$id")->result_array();
+	}
+
 	public function get_messages($id)
 	{
 		return $this->db->query("SELECT

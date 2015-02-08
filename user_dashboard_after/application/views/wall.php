@@ -55,16 +55,16 @@
 	<div class='container'>
 	<div id="heading">
 <?php
-	echo "<h2>".$messages[0]['first_name'].' '.$messages[0]['last_name']."</h2>";
-	echo "<h4> User Id: ".$messages[0]['profile_id']."</h4>";
-	echo "<h4> Email ".$messages[0]['email']."</h4>";
-	echo "<h4> Description ".$messages[0]['description']."</h4>";
+	echo "<h2>".$user['first_name'].' '.$user['last_name']."</h2>";
+	echo "<h4> User Id: ".$user['id']."</h4>";
+	echo "<h4> Email ".$user['email']."</h4>";
+	echo "<h4> Description ".$user['description']."</h4>";
 ?>
 			
-	<h5>Leave a Message for <?= $messages[0]['first_name']; ?></h5>
+	<h5>Leave a Message for <?= $user['first_name']; ?></h5>
 		<form class="form-group" action="/messages/post_msg" method="post">
 			<input type='hidden' name='message_from_id' value='<?= $this->session->userdata('id'); ?>'>
-			<input type='hidden' name='user_id_profile' value='<?= $messages[0]['profile_id']; ?>'>
+			<input type='hidden' name='user_id_profile' value='<?= $user['id']; ?>'>
 			<textarea class="form-control" rows="3" name='message'></textarea>
 			<button type="submit" class="btn btn-default" >Submit</button>
 		</form>

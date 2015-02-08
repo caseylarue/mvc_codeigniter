@@ -12,11 +12,10 @@ class Messages extends CI_Controller {
 	{
 		// do one query  to get the user info and messages
 		$this->load->model('Message');
+		$user = $this->Message->user_info($id);
 		$messages = $this->Message->get_messages($id);
 		$comments = $this->Message->get_comments($id);
-
-		$this->load->view('wall', array('messages' => $messages, 
-										  'comments' => $comments)); 
+		$this->load->view('wall', array('user' => $user[0], 'messages' => $messages, 'comments' => $comments)); 
 	}
 
 	public function post_msg()

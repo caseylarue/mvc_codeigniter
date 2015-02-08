@@ -12,7 +12,7 @@ class Login extends CI_Model {
 
 	function get_all_users()
 	{
-		return $this->db->query("SELECT * FROM users ORDER BY last_name DESC")->result_array();
+		return $this->db->query("SELECT * FROM users ORDER BY id DESC")->result_array();
 	}
 
 	function get_user($email)
